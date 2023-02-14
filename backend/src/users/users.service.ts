@@ -1,4 +1,6 @@
-import { Injectable } from '@nestjs/common';
+//httpStatus es un "enum": es decir que ya tiene unas cuantas 
+//opciones a escojer 
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
@@ -18,7 +20,17 @@ export class UsersService {
     //private: para que se instancie automaticamente
     constructor(@InjectRepository(User) private userRepository: Respository<User>) { }
 
-    createUser(user: CreateUserDto) {
+    async createUser(user: CreateUserDto) {
+
+        const userFound = await this.userRepository.finOne({
+            where: { username: user.username }
+        })
+
+        if (userFound) {
+            return new HttpException('User already exist', HttpStatus.CONFLICT)
+        }
+
+
         const newUser = this.userRepository.create(user)
         return this.userRepository.save(newUser)
     }
@@ -28,19 +40,24 @@ export class UsersService {
     }
 
     getUser(id: number) {
-        return this.userRepository.finOne({
+        const userFound = await this.userRepository.finOne({
             where: { id }
         })
+        if (!userFound) {
+            return new HttpException('User not found', HttpException.NOT_FOUND)
+        }
+        return userFound;
     }
 
-    deleteUser(id: number) {
+    async deleteUser(id: number) {
         return this.userRepository.delete({
             id: id
         })
+
     }
 
-    updateUser(id: number, user:UpdateUserDto){
-       return this.userRepository.update({ id: id}, user)
+    updateUser(id: number, user: UpdateUserDto) {
+        return this.userRepository.update({ id: id }, user)
 
     }
 

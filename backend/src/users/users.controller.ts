@@ -16,14 +16,16 @@ export class UsersController {
 
 
     @Post()
-    createUser(@Body() newUser: CreateUserDto): Promise<User> {
+    //Quitamos el : Promise<User>  ya que puede devolver una excepcion
+    //tambien
+    createUser(@Body() newUser: CreateUserDto){
         return this.userService.createUser(newUser)
     }
 
     //ParseIntPipe sirve p/ parcear el resultado id
     //sin este metodo recibiria un string
     @Get(':id')
-    getUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
+    getUser(@Param('id', ParseIntPipe) id: number) {
         return this.userService.getUser()
     }
 
