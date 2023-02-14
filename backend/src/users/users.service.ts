@@ -27,5 +27,11 @@ export class UsersService {
      return   this.userRepository.find()
     }
 
+    getUser(id: number) {
+        return this.userRepository.finOne({
+             where:{ id}
+         })
+     }
+
 
 }
