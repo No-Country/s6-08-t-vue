@@ -5,7 +5,7 @@ import { Repository } from 'typeorm'
 //puede ser pensado como una biblioteca que se comunica
 //con la dbs para hacer consultas
 import { CreateUserDto } from './dto/create-user.dto'
-
+import { UpdateUserDto } from './dto/update-user.dto'
 
 //Lo primero que tengo que hacer es traer la entidad
 @Injectable()
@@ -37,6 +37,11 @@ export class UsersService {
         return this.userRepository.delete({
             id: id
         })
+    }
+
+    updateUser(id: number, user:UpdateUserDto){
+       return this.userRepository.update({ id: id}, user)
+
     }
 
 }
