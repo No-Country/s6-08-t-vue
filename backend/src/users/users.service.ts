@@ -16,22 +16,27 @@ export class UsersService {
     //y le digo que tipo de dato es (Respository) el cual importo
     //desde 'typeorm'
     //private: para que se instancie automaticamente
-    constructor(@InjectRepository(User) private userRepository: Respository<User>){}
+    constructor(@InjectRepository(User) private userRepository: Respository<User>) { }
 
-    createUser(user: CreateUserDto){
+    createUser(user: CreateUserDto) {
         const newUser = this.userRepository.create(user)
         return this.userRepository.save(newUser)
     }
 
-    getUsers(){
-     return   this.userRepository.find()
+    getUsers() {
+        return this.userRepository.find()
     }
 
     getUser(id: number) {
         return this.userRepository.finOne({
-             where:{ id}
-         })
-     }
+            where: { id }
+        })
+    }
 
+    deleteUser(id: number) {
+        return this.userRepository.delete({
+            id: id
+        })
+    }
 
 }
