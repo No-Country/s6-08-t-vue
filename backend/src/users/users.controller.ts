@@ -9,12 +9,15 @@ export class UsersController {
     constructor(private userService: UsersService) {
 
     }
+
+//-----------------------------------------------------
     @Get()
     getUsers(): Promise<User[]> {
         return this.userService.getUsers
     }
 
 
+//-----------------------------------------------------
     @Post()
     //Quitamos el : Promise<User>  ya que puede devolver una excepcion
     //tambien
@@ -24,17 +27,20 @@ export class UsersController {
 
     //ParseIntPipe sirve p/ parcear el resultado id
     //sin este metodo recibiria un string
+    
+//-----------------------------------------------------    
     @Get(':id')
     getUser(@Param('id', ParseIntPipe) id: number) {
         return this.userService.getUser()
     }
 
+//-----------------------------------------------------
     @Delete(':id')
     deleteUser(@Param('id', ParseInPipe) id: number) {
         return this.userService.deleteUser()
     }
 
-
+//-----------------------------------------------------
     @Patch(':id')
     updateUser(@Param('id,ParseIntPipe') id: number, @Body()
     user: UpdateUserDto) {
