@@ -3,19 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule  } from '@nestjs/typeorm'
+import { PaymentController } from './payment/payment.controller';
+import { PaymentService } from './payment/payment.service';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type:'mysql',
-    host:'localhost',
-    username:'root',
-    password:'pass',
-    database:'dbs',
-    entities:[__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize:true
-  }),
-    UsersModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [UsersModule],
+  controllers: [AppController, PaymentController],
+  providers: [AppService, PaymentService],
 })
 export class AppModule {}
