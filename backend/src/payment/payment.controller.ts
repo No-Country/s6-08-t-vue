@@ -4,7 +4,7 @@ import { PaymentService } from './payment.service';
 export class PaymentController {
   constructor(private readonly appService: PaymentService) {}
   @Get()
-  payment(): string {
+  payment() {
     return this.appService.Test();
   }
 }
