@@ -5,6 +5,6 @@ export class PaymentController {
   constructor(private readonly appService: PaymentService) {}
   @Get()
   payment() {
-    return this.appService.Test();
+    return this.appService.payment();
   }
 }
