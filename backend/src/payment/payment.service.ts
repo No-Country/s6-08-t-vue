@@ -3,13 +3,10 @@ import axios from 'axios';
 import { EnvConfiguration } from 'src/config/app.config';
 import { dataPayment } from 'src/payment-link/entities/payment';
 
-
 @Injectable()
 export class PaymentService {
-
-
-
-  async payment(dataPayment: number)  {
+  async payment(dataPayment: dataPayment) {
+    console.log(dataPayment);
 
     const url = 'https://api.mercadopago.com/checkout/preferences';
 
@@ -24,25 +21,22 @@ export class PaymentService {
           description: 'Descrição do Item',
           category_id: 'art',
           quantity: 1,
-          unit_price: dataPayment,
+          unit_price: Number(dataPayment.unit_price),
         },
       ],
       payer: {
-        name: 'João',
-        surname: 'Silva',
-        email: 'user@email.com',
+        name: dataPayment.name,
+        surname: dataPayment.surname,
+        email: dataPayment.email,
         phone: {
-          area_code: '11',
-          number: '4444-4444',
+          area_code: Number(dataPayment.phone.area_code),
+          number: dataPayment.phone.number,
         },
-        identification: {
-          type: 'CPF',
-          number: '19119119100',
-        },
+
         address: {
-          street_name: 'Street',
-          street_number: 123,
-          zip_code: '06233200',
+          street_name: dataPayment.address.street_name,
+          street_number: dataPayment.address.street_number,
+          zip_code: dataPayment.address.zip_code,
         },
       },
       back_urls: {
