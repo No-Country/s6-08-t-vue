@@ -1,5 +1,5 @@
 Endo point
-http://localhost:3000/payment
+http://localhost:3000/api/payment
 MET: POST
 
 Se le debe enviar en el body un objeto con los siguientes valores:
