@@ -137,7 +137,7 @@
           <div 
             v-for="item in projects.slice(0, 3)"
             :key="item.title"
-            class="p-4 lg:w-1/3 w-full"
+            class="p-5 lg:w-1/3"
           >
             <CFCard>
               <template v-slot:img>

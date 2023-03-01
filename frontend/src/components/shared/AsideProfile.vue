@@ -8,7 +8,7 @@
           <span class="font-medium">Mis datos</span>
         </router-link>
 
-        <router-link class="flex py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" to="/donaciones">
+        <router-link class="flex py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100  hover:text-gray-700" to="/history">
           <span class="mx-4 font-medium">Historial de donaciones</span>
         </router-link>
           

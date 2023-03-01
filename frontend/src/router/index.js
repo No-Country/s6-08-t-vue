@@ -53,6 +53,11 @@ const router = createRouter({
       component: () => import("../views/CFProfileView.vue"),
     },
     {
+      path: "/history",
+      name: "history",
+      component: () => import("../views/CFHistoryView.vue"),
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "PageNotFound",
       component: () => import("../views/CFNotFound.vue"),
