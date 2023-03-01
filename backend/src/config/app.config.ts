@@ -4,6 +4,7 @@ export const EnvConfiguration = () => ({
   defaultLimit: +process.env.DEFAULT_LIMIT || 8,
   ACCESS_TOKEN: process.env.ACCESS_TOKEN,
   SUCCESS_PAYMENT: process.env.SUCCESS_PAYMENT,
-  FAILURE_PAYMENT:process.env.FAILURE_PAYMENT,
-  PENDING_PAYMENT:process.env.PENDING_PAYMENT,
+  FAILURE_PAYMENT: process.env.FAILURE_PAYMENT,
+  PENDING_PAYMENT: process.env.PENDING_PAYMENT,
+  domain: process.env.DOMAIN,
 });
