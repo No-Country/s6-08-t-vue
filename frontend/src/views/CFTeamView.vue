@@ -35,20 +35,21 @@
       <div class="flex flex-col">
         <div class="flex items-center">
           <div class="text-left">
-            <CFTeamMemberCard class="my-2" role="Role" name="Name" url="http" />
-            <CFTeamMemberCard class="my-2" role="Role" name="Name" url="http" />
+            <CFTeamMemberCard class="my-2" role="UX/UI" name="Micaeala Andres" url="http" />
+            <CFTeamMemberCard class="my-2" role="Frontend" name="Yenifer Ramirez" url="http" />
           </div>
         </div>
         <div class="flex items-center justify-end">
           <div class="text-right">
-            <CFTeamMemberCard class="my-2" role="Role" name="Name" url="http" />
-            <CFTeamMemberCard class="my-2" role="Role" name="Name" url="http" />
+            <CFTeamMemberCard class="my-2" role="Frontend" name="Walter Huaynapata" url="http" />
+            <CFTeamMemberCard class="my-2" role="Frontend" name="Mayder Cortés" url="http" />
           </div>
         </div>
         <div class="flex items-center">
           <div class="text-left">
-            <CFTeamMemberCard class="my-2" role="Role" name="Name" url="http" />
-            <CFTeamMemberCard class="my-2" role="Role" name="Name" url="http" />
+            <CFTeamMemberCard class="my-2" role="Backend" name="Yohan Bello" url="http" />
+            <CFTeamMemberCard class="my-2" role="Backend" name="Diego Petcoff" url="http" />
+            <CFTeamMemberCard class="my-2" role="Backend" name="Pablo Ortega" url="http" />
           </div>
         </div>
       </div>
@@ -60,4 +61,3 @@
 import CFTeamMemberCard from "../components/Cards/CFTeamMemberCard.vue";
 </script>
 
-<style scoped></style>
