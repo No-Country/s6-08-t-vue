@@ -88,6 +88,11 @@ export default {
                 >Cómo funciona</RouterLink
               >
               <RouterLink
+                class="my-2 text-neutral transition-colors duration-300 transform hover:bg-secondary-color hover:py-2 hover:px-4 hover:mx-0 hover:my-0 hover:rounded-3xl md:mx-4 md:my-2"
+                to="/profile"
+                >Perfil</RouterLink
+              >
+              <RouterLink
                 class="my-2 text-neutral transition-colors duration-300 transform hover:bg-primary-color-100 hover:py-2 hover:px-4 hover:mx-0 hover:my-0 hover:rounded-3xl md:mx-4 md:my-2"
                 to="/login"
                 >Iniciar Sesión</RouterLink
