@@ -15,7 +15,13 @@
       <!-- add projects-->
       <CFProjectCard>
         <template v-slot:img>
-          <img src="../assets/img/img-default-project.svg" alt="" />
+          <RouterLink
+          class="cursor-pointer"
+          to="/add-project"
+          ><img src="../assets/img/img-default-project.svg" alt="" />
+          </RouterLink
+          >
+          
         </template>
         <template v-slot:title>
           <h2>Agrega tu proyecto</h2>

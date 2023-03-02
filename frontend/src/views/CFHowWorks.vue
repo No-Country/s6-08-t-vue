@@ -53,10 +53,7 @@
           </button>
 
           <p class="mt-6 text-sm text-gray-500">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
-            eaque nobis, fugit odit omnis fugiat deleniti animi ab maxime cum
-            laboriosam recusandae facere dolorum veniam quia pariatur obcaecati
-            illo ducimus?
+            Este proyecto fue diseñado para personas que están pasando una situación especial y no la pueda cubrir economicamente. Podrás donar y ayudar a la causa que más se identifique con vos.
           </p>
         </div>
 

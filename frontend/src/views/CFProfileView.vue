@@ -25,10 +25,10 @@ export default {
               <h1
                 class="mt-4 text-xl font-semibold text-primary-color capitalize group-hover:text-white"
               >
-                nombre y apellido
+                Melissa Perez
               </h1>
               <p class="mt-2 text-gray-500 group-hover:text-gray-300">
-                test@test.com
+                melissa@example2.com
               </p>
               <p class="mt-2 text-sm text-gray-500 group-hover:text-gray-300">
                 +00 000 0000000
