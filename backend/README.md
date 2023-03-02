@@ -2,72 +2,81 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Crowdfunding API
 
-## Description
+1. Clonar proyecto
+2. ```npm install```
+3. Clonar el archivo ```.env.example``` y renombrarlo a ```.env``` 
+4. Cambiar las variables de entorno
+5. Levantar la base de datos
+```
+docker-compose up -d
+```
+6. Levantar: ```npm start:dev``` 
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+7. Endoint:  ```http://localhost:3000/api/``` 
 
-## Installation
 
-```bash
-$ npm install
+---
+---
+### Mercado Pago
+
+Dentro del archivo .env se deben configurar las variables de entorno:
+
+MP_ACCESS_TOKEN: Este es el token que debe tener la persona que reciba el dinero, el mismo se debe obtenermediante la cuenta de Mercado pago creada
+
+MP_SUCCESS_PAYMENT: Se debe poner la pagina o ruta a la que el usuario que esta pagando accedera luego de realizar el pago si el mismo se efectiviza con exito
+
+MP_FAILURE_PAYMENT: Se debe poner la pagina o ruta a la que el usuario que esta pagando accedera luego de realizar el pago FALLA
+
+MP_PENDING_PAYMENT: Se debe poner la pagina o ruta a la que el usuario que esta pagando accedera luego de realizar el pago QUEDA PENDIENTE
+
+---
+
+Endpoint para Realizar orden de compra:
+
+``` javascript
+http://localhost:3000/api/donation/mp
+```
+Se debe enviar una petición post con el siguiente body:
+
+```JSON
+{ 
+  "unit_price": 100,
+  "name": "Diego",  
+  "email":"user@email.com"
+}
+```
+Donde unit_price es el monto que se va a donar.
+
+Este endpoint devuelve la ruta que debe ser renderizada para que el donante siga con el pago.
+Se debe guardar en localStorage el monto a donar, el nombre del usuario y el id del proyecto para el cual se está realizando la donación.
+
+Una ves que el donante termine la transacción, mercado pago lo deriva automáticamente a la ruta success puesta como variable de entorno. A esta ruta a su ves, le agrega ciertos parámetros de los cuales debemos obtener el parámetro 'status' y verificar si su valor es 'approved'.
+
+Una ves verificado esto debemos enviar los datos almacenados en local storage en una petición POST
+
+A la URL:
+```javascript
+  http://localhost:3000/api/donation/new
+```
+con el body: 
+```JSON
+{
+	"amount": 300,
+  "name": "Nombre",
+	"projectId": "a322c363-1898-4b98-8827-ef035b0d8fa0"
+}
 ```
 
-## Running the app
+Una vez realizada esa petición la api va a generar una nueva donación, la vinculará al proyecto e incrementará el total recaudado en el mismo
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# Información 
+Cuentas de Mercado Pago para Pruebas
 ```
+Identificación de cuenta: TEST_USER_1313855305 Usuario Contraseña: uQwpuTttut Public Key: APP_USR-39f42a1c-072a-45e5-95e2-a0ef3bd7b622 Access Token: APP_USR-4410140070420770-021915-9a67e31ccdd7e46c81e6967f03a2eedf-1313855305
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+Identificación de cuenta: TEST_USER_1313864649 Usuario Contraseña: t61vtrzaJC Public Key: APP_USR-67e17192-9882-430a-919c-7c0ec08b0749 Access Token: APP_USR-1271116256911400-021915-42f226bbf128fa74d870f633c6b6999f-1313864649
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
